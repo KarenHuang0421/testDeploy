@@ -404,6 +404,18 @@ $button-size: 3.75rem;
             padding: 1.3rem 2rem;
             border-top: 2px solid var(--clr-border);
 
+            >span {
+                margin: auto
+            }
+
+            .login {
+                color: var(--clr-primary);
+                cursor: pointer;
+                font-weight: 700;
+                padding: 0 4px;
+                user-select: none;
+            }   
+
             .input-wrapper {
                 display: flex;
                 width: 90%;
