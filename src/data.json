@@ -1,0 +1,174 @@
+{
+    "demoFeed": [
+        {
+            "_id": "1",
+            "caption": "here is description about this video",
+            "comments": 10,
+            "createdAt": "2022-02-02 10:02:01",
+            "hasLiked": false,
+            "isFollowing": true,
+            "likes": 10,
+            "music": "music",
+            "shares": 10,
+            "tags": [
+                "tag1",
+                "tag2"
+            ],
+            "uploader": {
+                "username": "karen0421",
+                "name": "＠joke777"
+            },
+            "views": 10,
+            "videoId": "1"
+        },
+        {
+            "_id": "2",
+            "caption": "new episode is online now!",
+            "comments": 2,
+            "createdAt": "2022-02-02 10:02:01",
+            "hasLiked": true,
+            "isFollowing": false,
+            "likes": 2,
+            "music": "music",
+            "shares": 2,
+            "tags": [
+                "tag1",
+                "tag2"
+            ],
+            "uploader": {
+                "username": "netflixOfficial",
+                "name": "@netflix"
+            },
+            "views": 10,
+            "videoId": "2"
+        }
+    ],
+    "demoSuggestedFollow": [
+        {
+            "username": "joke123",
+            "name": "joke123",
+            "videos": {
+                "uploaded": [
+                    "dffsd"
+                ]
+            }
+        }
+    ],
+    "demoUsers": [
+        {
+            "username": "吉兆割烹 KITCHO",
+            "name": "@kitcho2202",
+            "email": "emo",
+            "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "approved": true
+        },
+        {
+            "username": "username",
+            "name": "name",
+            "email": "emo",
+            "description": "string",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "approved": false
+        },
+        {
+            "username": "username",
+            "name": "name",
+            "email": "emo",
+            "description": "string",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "approved": true
+        }
+    ],
+    "demoComments": [
+        {
+            "commentId": "1",
+            "postedBy": {
+                "username": "jedLin",
+                "name": "jed"
+            },
+            "comment": "this is the comment i demonstrate",
+            "replies": 2,
+            "likes": 1,
+            "hasLiked": true
+        },
+        {
+            "commentId": "2",
+            "postedBy": {
+                "username": "turb",
+                "name": "turb"
+            },
+            "comment": "yes i agree",
+            "replies": 0,
+            "likes": 0,
+            "hasLiked": false
+        }
+    ],
+    "demoVideo1": {
+        "videoId": "1",
+        "uploader": {
+            "username": "吉兆割烹 KITCHO",
+            "name": "@kitcho2202",
+            "email": "emo",
+            "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "approved": true
+        },
+        "caption": "caption",
+        "music": "",
+        "video": "",
+        "tags": [],
+        "likes": 2,
+        "comments": 2,
+        "shares": 2,
+        "views": 2,
+        "hasLiked": true,
+        "isFollowing": true
+    },
+    "demoVideo2": {
+        "videoId": "2",
+        "uploader": {
+            "username": "吉兆割烹 KITCHO",
+            "name": "@kitcho2202",
+            "email": "emo",
+            "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+            "profilePhoto": "",
+            "following": 1,
+            "followers": 2,
+            "totalLikes": 0,
+            "videos": [],
+            "isFollowing": false,
+            "approved": true
+        },
+        "caption": "anna paid the bills!",
+        "music": "",
+        "video": "",
+        "tags": [],
+        "likes": 2,
+        "comments": 2,
+        "shares": 2,
+        "views": 2,
+        "hasLiked": false,
+        "isFollowing": false
+    }
+}

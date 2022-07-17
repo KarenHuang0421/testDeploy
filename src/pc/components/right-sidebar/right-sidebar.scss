@@ -1,0 +1,94 @@
+@import "../../index.scss";
+
+$sidebar-width: 356px;
+$box-padding: 16px 6px;
+$block-border: 4px;
+
+.right-sidebar-wrapper {
+    // background-color: red;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: $box-padding;
+	width: $sidebar-width;
+}
+
+.ad-block-1 {
+    background-color: #ccc;
+    border-radius: $block-border;
+    height: 200px
+}
+
+.ad-block-2 {
+    background-color: #ddd;
+    border-radius: $block-border;
+    height: 200px
+}
+
+
+.news-list-item {
+    display: flex;
+    align-items: center;
+    // margin-bottom: 15px;
+
+    i {
+        margin-right: 4px
+    }
+    .thumbnail {
+        background-color: #ddd;
+        border-radius: 5px;
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+    .content {
+        flex:1;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 0.4rem;
+    }
+}
+
+.store-list-item {
+    display: flex;
+    align-items: center;
+    // margin-bottom: 15px;
+
+    .thumbnail {
+        background-color: #ddd;
+        border-radius: 50%;
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+    .content {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 0.4rem;
+    }
+}
+
+.account-list-item {
+    display: flex;
+    align-items: center;
+    // margin-bottom: 15px;
+
+    i {
+        margin-right: 4px
+    }
+    .thumbnail {
+        background-color: #ddd;
+        height: 2.4rem;
+        width: 2.4rem;
+    }
+    .content {
+        flex:1;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 0.4rem;
+    }
+}

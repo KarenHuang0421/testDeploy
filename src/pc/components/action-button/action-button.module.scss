@@ -1,0 +1,32 @@
+$action-btn-size: 48px;
+
+.action-btn-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	span {
+		// font-size: 0.72rem;
+		font-size: 1rem;
+		font-weight: 600;
+		// margin-right: 10px;
+		color: #ffffff
+		// color: rgba(var(--clr-secondary-values), 0.75);
+	}
+}
+.action-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: $action-btn-size;
+	height: $action-btn-size;
+	border-radius: 50%;
+	background-color: rgba(var(--clr-secondary-values), 0.06);
+	font-size: 1.3rem;
+	cursor: pointer;
+	transition: background-color 0.25s ease-out, color 0.25s ease-out;
+
+	&:hover {
+		background-color: rgba(var(--clr-secondary-values), 0.1);
+	}
+}

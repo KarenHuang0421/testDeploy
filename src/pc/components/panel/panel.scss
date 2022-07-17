@@ -1,0 +1,28 @@
+@import "../../index.scss";
+
+.panel-card {
+	display: flex;
+	gap: 15px;
+	// background-color: white;
+	// border-bottom: 2px solid var(--clr-border);
+	background-color: var(--clr-layer-1);
+	box-shadow: var(--shadows, 0 0 2px 2px var(--clr-shadow));
+	border-radius: 5px;
+	// margin-top: 1.2rem;
+    padding: 10px 16px;
+}
+.panel-head {
+    align-items: flex-end;
+    border-bottom: 1px solid #ccc;
+    color: var(--clr-panel-title-color);
+    
+    span {
+        line-height: 2rem;
+    }
+
+    .sub {
+        color: #6b6b6b;
+        font-size: 12px;
+        line-height: 1.6rem;
+    }
+}
