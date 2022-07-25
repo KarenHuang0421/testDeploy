@@ -179,7 +179,7 @@ export default function Sidebar({ isTerms = false }: Props) {
 														<h5>{acc.username}</h5>
 														<div className="d-row al-center">
 															<h6>{acc.name}</h6>
-															{acc.approved && <Approve2 />}
+															{acc.userType === 'public' && <Approve2 />}
 														</div>
 													</div>
 												</div>

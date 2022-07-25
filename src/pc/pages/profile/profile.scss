@@ -168,6 +168,10 @@ $suggested-pfp-size: 32px;
             gap: 24px;
             margin: 16px 0 32px 0;
 
+            >h4{
+                padding: 32px 0;
+            }
+
             &.ungrid {
                 display: flex;
                 align-items: center;
@@ -183,6 +187,14 @@ $suggested-pfp-size: 32px;
             width: 335px;
             padding-top: 10px;
 
+            .sub {
+                color: var(--clr-primary);
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: bold;
+                line-height: unset;
+            }
+
             .panel-content-item {
                 gap: 8px;
                 // padding: 4px 0;
@@ -190,6 +202,16 @@ $suggested-pfp-size: 32px;
                 div {
                     // background-color: red;
                     width: 2rem;
+                }
+
+                .copy-icon {
+                    color:var(--clr-primary);
+                    cursor: pointer;
+                    transition: background-color 0.5s ease-out;
+
+                    :active {
+                        opacity: .4;
+                    }
                 }
             }
 

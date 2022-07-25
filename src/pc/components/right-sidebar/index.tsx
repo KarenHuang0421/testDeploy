@@ -1,7 +1,9 @@
 import "./right-sidebar.scss";
 import Panel from "../panel";
+import { Link } from "react-router-dom";
 import { ReactComponent as Approve1 } from "../../../assets/approve-1.svg";
 import Thumbnail from "../atoms/thumbnail";
+import { demoStoreUsers } from "../../../data.json"; 
 
 interface Props {}
 
@@ -63,7 +65,7 @@ export default function RightSidebar({ isContact = false }: Props) {
 				<>
 					<Panel title="最火時事榜" subtitle="上週熱門時事">
 						{news.map((item, i) => (
-							<div className="d-row news-list-item" key={'news_'+i}>
+							<div className="d-row news-list-item" key={"news_" + i}>
 								{/* <div className="thumbnail" /> */}
 								<Thumbnail size={40} type="square" />
 								<div className="content">{item.content}</div>
@@ -75,17 +77,19 @@ export default function RightSidebar({ isContact = false }: Props) {
 						))}
 					</Panel>
 					<Panel title="人氣店家榜" subtitle="上週訂位最火熱">
-						{stores.map((item, i) => (
-							<div className="d-row store-list-item" key={'stores_'+i}>
-								<Thumbnail size={40} />
-								<div className="content">{item.content}</div>
-								<Approve1 />
-							</div>
+						{demoStoreUsers.map((item, i) => (
+							<Link key={i} to={"/user/" + item.username}>
+								<div className="d-row store-list-item" key={"stores_" + i}>
+									<Thumbnail size={40} />
+									<div className="content">{item.username}</div>
+									<Approve1 />
+								</div>
+							</Link>
 						))}
 					</Panel>
 					<Panel title="魅力氣用戶榜" subtitle="上週累積讚數最多">
 						{users.map((item, i) => (
-							<div className="d-row account-list-item" key={'users_'+i}>
+							<div className="d-row account-list-item" key={"users_" + i}>
 								<Thumbnail size={40} />
 								<div className="content">{item.content}</div>
 								<div className="d-row center">

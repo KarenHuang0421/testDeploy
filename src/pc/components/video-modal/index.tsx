@@ -173,6 +173,7 @@ export default function VideoModal(props: ModalProps) {
 			url.focus();
 			url.select();
 			document.execCommand("copy");
+			url.blur()
 		}
 	}
 

@@ -1,11 +1,11 @@
 // import { useState } from "react";
 import { useAppDispatch } from "../../store";
 import { popUpActions } from "../../store/slices/pop-up-slice";
-import constants from "../../../common/constants";
+import constants from "../../constants";
 import Thumbnail from "../../../pc/components/atoms/thumbnail";
-import Input from "../../components/input-field";
+import Input from "../input-field";
 
-export default function Edit() {
+export default function EditMyProfile() {
 	const dispatch = useAppDispatch();
 	// const [textCount, setTextCount] = useState(0);
 

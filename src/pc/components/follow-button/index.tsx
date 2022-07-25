@@ -62,7 +62,7 @@ export default function FollowButton(props: Props) {
 			</button>
 		) : null
 	) : (
-		<button className={props.followClassName} onClick={follow}>
+		<button className={props.followingClassName} onClick={follow}>
 			關注
 		</button>
 	);

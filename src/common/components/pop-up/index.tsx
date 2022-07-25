@@ -3,7 +3,8 @@ import { joinClasses } from "../../utils";
 import { ComponentProps } from "../../types";
 import Reset from "./Reset";
 import Send from "./Send";
-import Edit from "./Edit";
+import EditMyProfile from "./EditMyProfile";
+import EditStoreProfile from "./EditStoreProfile";
 import Publish from "./Publish";
 import ActionList from "./ActionList";
 import FailApply from "./FailApply";
@@ -15,7 +16,8 @@ interface Props extends ComponentProps {
 }
 
 const title = (val: string) => {
-	if (val === "edit") return "編輯個人資料";
+	if (val === "edit-my-profile") return "編輯個人資料";
+	if (val === "edit-store-profile") return "設定店家資訊";
 	if (val === "apply") return "申請為專業帳號";
 	else return null;
 };
@@ -48,7 +50,8 @@ export default function PopUp({ className, type, handleModalClose }: Props) {
 				<div className="scrollable-part">
 					{type === "feedback" && <Send handleModalClose={handleModalClose} />}
 					{type === "reset" && <Reset />}
-					{type === "edit" && <Edit />}
+					{type === "edit-my-profile" && <EditMyProfile />}
+					{type === "edit-store-profile" && <EditStoreProfile />}
 					{type === "publish" && <Publish />}
 					{type === "apply" && <ActionList />}
 					{type === "fail-apply" && <FailApply />}

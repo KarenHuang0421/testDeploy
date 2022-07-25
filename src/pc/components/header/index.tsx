@@ -65,7 +65,7 @@ export default function Header() {
 	}, []);
 
 	function handleShowModal(type?: any) {
-		if (type === "edit") {
+		if (type === "edit-my-profile") {
 			dispatch(popUpActions.showModal([type]));
 		}
 		else dispatch(authModalActions.showModal());
@@ -164,7 +164,7 @@ export default function Header() {
 									</Link> */}
 									<button
 										className="hoverable"
-										onClick={() => handleShowModal("edit")}
+										onClick={() => handleShowModal("edit-my-profile")}
 									>
 										<i className="fas fa-user-edit" />
 										<span>編輯個人資料</span>

@@ -6,11 +6,12 @@ interface Props {
 	setVideosType: React.Dispatch<
 		React.SetStateAction<any | "active" | "video" | "collected" | "liked">
 	>;
+	isOwnProfile: boolean,
 	// fetchLikedVids: () => Promise<void>;
 	username: string;
 }
 
-const tabs = [
+const MyOwnTabs = [
 	{
 		id: "active",
 		label: "動態"
@@ -28,9 +29,24 @@ const tabs = [
 		label: "喜歡的內容"
 	}
 ];
+const tabs = [
+	{
+		id: "active",
+		label: "動態"
+	},
+	{
+		id: "video",
+		label: "影片與照片"
+	},
+	{
+		id: "liked",
+		label: "喜歡的內容"
+	}
+];
 
 export default function ProfileButtons({
 	setVideosType,
+	isOwnProfile,
 	// fetchLikedVids,
 	username
 }: Props) {
@@ -100,7 +116,7 @@ export default function ProfileButtons({
 					Liked
 				</button> */}
 
-				{tabs.map((item , index) => (
+				{(isOwnProfile ? MyOwnTabs : tabs).map((item , index) => (
 					<button
 						key={"tab_"+index}
 						id={item.id}

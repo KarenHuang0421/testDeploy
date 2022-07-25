@@ -78,12 +78,12 @@
             "followers": 10,
             "totalLikes": 10,
             "videos": [],
-            "isFollowing": false,
-            "approved": true
+            "isFollowing": true,
+            "userType": "public"
         },
         {
-            "username": "username",
-            "name": "name",
+            "username": "username1",
+            "name": "name1",
             "email": "emo",
             "description": "string",
             "profilePhoto": "",
@@ -92,11 +92,11 @@
             "totalLikes": 10,
             "videos": [],
             "isFollowing": false,
-            "approved": false
+            "userType": "normal"
         },
         {
-            "username": "username",
-            "name": "name",
+            "username": "username2",
+            "name": "name2",
             "email": "emo",
             "description": "string",
             "profilePhoto": "",
@@ -105,7 +105,87 @@
             "totalLikes": 10,
             "videos": [],
             "isFollowing": false,
-            "approved": true
+            "userType": "public"
+        },
+        {
+            "username": "RAW",
+            "name": "@kitcho2202",
+            "email": "emo",
+            "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "userType": "store"
+        },
+        {
+            "username": "教父牛排",
+            "name": "name1",
+            "email": "emo",
+            "description": "string",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "userType": "store"
+        },
+        {
+            "username": "MEET",
+            "name": "name2",
+            "email": "emo",
+            "description": "string",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "userType": "store"
+        }
+    ],
+    "demoStoreUsers": [
+        {
+            "username": "RAW",
+            "name": "@kitcho2202",
+            "email": "emo",
+            "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "userType": "store"
+        },
+        {
+            "username": "教父牛排",
+            "name": "name1",
+            "email": "emo",
+            "description": "string",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "userType": "store"
+        },
+        {
+            "username": "MEET",
+            "name": "name2",
+            "email": "emo",
+            "description": "string",
+            "profilePhoto": "",
+            "following": 10,
+            "followers": 10,
+            "totalLikes": 10,
+            "videos": [],
+            "isFollowing": false,
+            "userType": "store"
         }
     ],
     "demoComments": [

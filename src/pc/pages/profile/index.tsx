@@ -23,12 +23,13 @@ import { ReactComponent as Approve1 } from "../../../assets/approve-1.svg";
 import { ReactComponent as Approve2 } from "../../../assets/approve-2.svg";
 import { ReactComponent as MapIcon } from "../../../assets/map.svg";
 import { ReactComponent as PriceIcon } from "../../../assets/price.svg";
-import { demoMyOwnData, demoVideos } from "../../../data.json";
+import { demoMyOwnData, demoVideos, demoUsers } from "../../../data.json";
 
 import { BsLine } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { FiUpload } from "react-icons/fi";
 import { ImFacebook } from "react-icons/im";
+import { IoMdCopy } from "react-icons/io";
 
 const detail = [
 	{
@@ -104,6 +105,13 @@ export default function Profile() {
 	}, [screenSize]);
 
 	const fetchData = useCallback(async () => {
+		if (username === loggedInAs) setUser(demoMyOwnData);
+		else if (username) {
+			Object.values(demoUsers).map(item => {
+				if (item.username === username) setUser(item);
+			});
+		}
+
 		// try {
 		// 	const res = await getUser(username!, loggedInAs);
 		// 	setUser(res.data);
@@ -116,7 +124,6 @@ export default function Profile() {
 		// 	);
 		// 	navigate("/", { replace: true });
 		// }
-		setUser(demoMyOwnData);
 	}, [username, navigate, dispatch, loggedInAs]);
 
 	useEffect(() => {
@@ -152,6 +159,28 @@ export default function Profile() {
 		window.open(url, "_blank");
 	}
 
+	function settingStoreData() {
+		dispatch(popUpActions.showModal(['edit-store-profile']))
+	}
+
+	function copyText() {
+		const selection = window.getSelection();
+		const range = document.createRange();
+		const text = document.getElementById("store-address") as HTMLSpanElement;
+
+		if (text) {
+			range.selectNodeContents(text);
+
+			if (selection) {
+				selection.removeAllRanges();
+				selection.addRange(range);
+
+				document.execCommand("copy");
+				selection.removeAllRanges();
+			}
+		}
+	}
+
 	return (
 		<PageWithSidebar className="profile-page-container">
 			<div className="profile-container">
@@ -176,10 +205,10 @@ export default function Profile() {
 										<h1 className="break-word d-row al-center">
 											{user.username}
 											{user.userType === "public" && (
-												<Approve1 className="badge" />
+												<Approve2 className="badge" />
 											)}
 											{user.userType === "store" && (
-												<Approve2 className="badge" />
+												<Approve1 className="badge" />
 											)}
 											<button className="flex-1">
 												<FiUpload className="icon" />
@@ -217,7 +246,7 @@ export default function Profile() {
 												<>
 													<button
 														className="thirdary-button flex-1"
-														onClick={() => handleShowModal("edit")}
+														onClick={() => handleShowModal("edit-my-profile")}
 													>
 														編輯個人資料
 													</button>
@@ -233,8 +262,8 @@ export default function Profile() {
 													onClick={fetchData}
 													isFollowing={user.isFollowing!}
 													toFollow={username!}
-													followClassName="flex-1 primary-button-2"
-													followingClassName="flex-1 thirdary-button"
+													followClassName="flex-1 thirdary-button"
+													followingClassName="flex-1 primary-button-2"
 												/>
 											)}
 										</div>
@@ -272,6 +301,7 @@ export default function Profile() {
 								</div>
 								<ProfileButtons
 									setVideosType={setVideosType}
+									isOwnProfile={username === loggedInAs}
 									// fetchLikedVids={fetchLikedVids}
 									username={username!}
 								/>
@@ -298,12 +328,20 @@ export default function Profile() {
 									) : (
 										<VideosLayout videos={likedVideos as string[]} />
 									)} */}
-									<VideosLayout videoType={videosType} videos={videos} />
+									<VideosLayout
+										tempParamsToDemoOwnData={isOwnProfile}
+										videoType={videosType}
+										videos={videos}
+									/>
 								</div>
 							</div>
 							<div className="right-panel">
 								{user.userType === "store" && (
-									<Panel title="店家資訊">
+									<Panel
+										title="店家資訊"
+										subtitle="設定"
+										onSubTitle={settingStoreData}
+									>
 										{detail.map((item, i) => (
 											<div
 												className="d-row panel-content-item"
@@ -311,7 +349,14 @@ export default function Profile() {
 											>
 												{/* <span>icon</span> */}
 												<div className="center">{item.icon}</div>
-												<span>{item.content}</span>
+												<span id="store-address">{item.content}</span>
+												{i == 0 && (
+													<IoMdCopy
+														size={24}
+														className="copy-icon"
+														onClick={copyText}
+													/>
+												)}
 											</div>
 										))}
 										<button

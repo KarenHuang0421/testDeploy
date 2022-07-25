@@ -6,9 +6,13 @@ import { useEffect } from "react";
 interface Props {
 	videos: VideoData[] | null;
 	videoType?: string;
+	tempParamsToDemoOwnData?: boolean
 }
 
-export default function VideosLayout({ videos, videoType }: Props) {
+export default function VideosLayout({ videos, videoType, tempParamsToDemoOwnData = false }: Props) {
+
+	if (!tempParamsToDemoOwnData)
+		return <h4>No videos.</h4>
 
 	return !videos || videos?.length === 0 ? (
 		<h4>No videos.</h4>
