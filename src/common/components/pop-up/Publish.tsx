@@ -7,7 +7,6 @@ export default function Publish() {
 
 	function handleModalClose(val?: any) {
 		dispatch(popUpActions.hideModal());
-		// dispatch(popUpActions.setType([""]));
 	}
 
 	function goToProfilePage () {

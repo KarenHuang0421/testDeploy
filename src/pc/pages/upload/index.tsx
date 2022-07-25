@@ -9,45 +9,45 @@ import Container from "../../components/container";
 import Input from "../../../common/components/input-field";
 import LoadingSpinner from "../../../common/components/loading-spinner";
 import { createVideo } from "../../../common/api/video";
+import { joinClasses, getTimeFromSeconds } from "../../../common/utils";
 import { useAppDispatch, useAppSelector } from "../../../common/store";
-import { ReactComponent as UploadIcon } from "../../../assets/upload-icon.svg"
+import { ReactComponent as UploadIcon } from "../../../assets/upload-icon.svg";
 import { notificationActions } from "../../../common/store/slices/notification-slice";
 import constants from "../../../common/constants";
 import CheckboxSet from "../../../common/components/checkbox-set";
-import { popUpActions } from "../../../common/store/slices/pop-up-slice";
+import Likes from "../../components/video-modal/Likes";
+import ActionButton from "../../components/action-button";
+import { demoVideo1 } from "../../../data.json";
 
 const validationSchema = yup.object().shape({
-	caption: yup
-		.string()
-		.required("動態描述不可少於1個字亦不可超過50個字")
-		.max(
-			// constants.captionMaxLen,
-			50,
-			`動態描述不可少於1個字亦不可超過50個字`
-		),
+	caption: yup.string().required("動態描述不可少於1個字亦不可超過50個字").max(
+		// constants.captionMaxLen,
+		50,
+		`動態描述不可少於1個字亦不可超過50個字`
+	),
 	cover: yup
 		.string()
 		.required("封面")
-		.max(constants.musicMaxLen, `At most ${constants.musicMaxLen} characters`),
+		.max(constants.musicMaxLen, `At most ${constants.musicMaxLen} characters`)
 	// tags: yup
 	// 	.string()
 	// 	.required("Required")
 	// 	.max(constants.tagsMaxLen, `At most ${constants.tagsMaxLen} characters`)
-		// .array()
-		// .of(
-		// 	yup.object().shape({
-		// 		check: yup.boolean()
-		// 	})
-		// )
-		// .test({
-		// 	name: 'one-true',
-		// 	message: 'Required',
-		// 	test: (val) => {
-		// 		console.log(val)
-		// 		return val == null
-		// 	}
-		//   })
-})
+	// .array()
+	// .of(
+	// 	yup.object().shape({
+	// 		check: yup.boolean()
+	// 	})
+	// )
+	// .test({
+	// 	name: 'one-true',
+	// 	message: 'Required',
+	// 	test: (val) => {
+	// 		console.log(val)
+	// 		return val == null
+	// 	}
+	//   })
+});
 
 const _privacySetting = [
 	{
@@ -85,8 +85,10 @@ export default function UploadPage() {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const socketRef = useRef<Socket | null>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const vidDuration = useRef("00:00");
 	const [isLoading, setIsLoading] = useState(false);
-	const [videoFile, setVideoFile] = useState<File>();
+	const [videoFile, setVideoFile] = useState<File | null>();
 	const [uploadProgress, setUploadProgress] = useState(0);
 	const [compressionProgress, setCompressionProgress] = useState({
 		percent: 0,
@@ -111,6 +113,54 @@ export default function UploadPage() {
 		},
 		[]
 	);
+
+	useEffect(() => {
+		if (!videoRef.current) return;
+		const vid = videoRef.current;
+		const timeline = document.getElementById("timeline");
+		const ended = false;
+		let time = 0;
+
+		function loadeddata() {
+			// vidDuration.current = getTimeFromSeconds(vid.duration);
+			console.log(vid.readyState);
+			loadTime();
+		}
+		function loadTime() {
+			if (ended === false) {
+				vid.currentTime = time;
+				time += 1;
+				// setTime(pre => pre + 1)
+			}
+		}
+
+		function updateTime() {
+			// console.log(vid.currentTime)
+			if (timeline) createImage();
+			// console.log('updateTime')
+		}
+
+		function createImage() {
+			var canvas = document.createElement("canvas");
+			var ctx = canvas.getContext("2d");
+			// canvas.width = vid.videoWidth;
+			// canvas.height = vid.videoHeight;
+			var imageNumber = timeline?.childElementCount;
+			canvas.width = 200;
+			canvas.height = 100;
+			ctx?.drawImage(vid, 0, 0, 200, 100);
+			// ctx.drawImage(vid, 0, 0, vid.videoWidth, vid.videoHeight);
+			timeline?.appendChild(canvas);
+		}
+
+		vid.addEventListener("loadeddata", loadeddata);
+		vid.addEventListener("timeupdate", updateTime);
+
+		return () => {
+			vid.removeEventListener("loadeddata", loadeddata);
+			vid.removeEventListener("timeupdate", updateTime);
+		};
+	}, [videoFile]);
 
 	const cancelFn = useCallback(() => {
 		if (socketRef.current) {
@@ -147,13 +197,13 @@ export default function UploadPage() {
 	const formik = useFormik({
 		initialValues: {
 			caption: "",
-			cover: "",
+			cover: ""
 			// tags: []
 		},
 		validationSchema,
 		onSubmit: async values => {
 			// dispatch(popUpActions.showModal(['publish']))
-			console.log(values)
+			console.log(values);
 			// setIsLoading(true);
 			// try {
 			// 	if (!videoFile || videoFile.type !== "video/mp4")
@@ -193,6 +243,26 @@ export default function UploadPage() {
 		}
 	});
 
+	const ActionBtns = () => {
+		return (
+			<div className="action-buttons">
+				<Likes likes={0} curVidId={"1"} handleAuthModalOpen={() => null} />
+				<ActionButton
+					icon={<i className="fas fa-comment-dots" />}
+					className="action-btn-container"
+				/>
+				<ActionButton
+					icon={<i className="fas fa-star" />}
+					className="action-btn-container"
+				/>
+				<ActionButton
+					icon={<i className="fas fa-share" />}
+					className="action-btn-container"
+				/>
+			</div>
+		);
+	};
+
 	return (
 		<Container className="upload-page-container">
 			{showProgressBox && (
@@ -226,14 +296,30 @@ export default function UploadPage() {
 				</header>
 				<div className="card-body">
 					<label htmlFor="video">
-						<div className="video-portion">
-							{videoFile?.type === "video/mp4" ? (
-								<video src={videoURL} autoPlay muted>
-									Your browser does not support videos.
-								</video>
+						<div
+							className={joinClasses(
+								"video-portion",
+								videoFile ? "hasVideo" : ""
+							)}
+						>
+							{videoFile?.type.split("/")[0] === "video" ? (
+								<div className="card-video">
+									<video
+										id="video"
+										ref={videoRef}
+										playsInline
+										preload="metadata"
+										src={videoURL}
+										// controls
+										autoPlay
+										muted
+									>
+										Your browser does not support videos.
+									</video>
+									<ActionBtns />
+								</div>
 							) : (
-								<>
-									{/* <i className="fas fa-video" /> */}
+								<div className="video-portion-content d-col al-center">
 									<UploadIcon />
 									<h4>
 										選擇要上傳的照片或影片
@@ -247,14 +333,18 @@ export default function UploadPage() {
 											檔案小於 {constants.videoSizeLimit / 1048576} MB
 										</span>
 									</p>
-									<button className="primary-button-2 w-100">選取檔案</button>
-								</>
+									<div className="primary-button-2 w-100">選取檔案</div>
+								</div>
 							)}
 							<input
 								type="file"
-								accept="video/mp4"
+								accept="video/*"
+								// accept="video/mp4"
 								id="video"
-								onChange={e => setVideoFile(e.target.files?.[0])}
+								// onChange={e => setVideoFile(e.target.files?.[0])}
+								onChange={e => {
+									setVideoFile(e.target.files?.[0]);
+								}}
 							/>
 						</div>
 					</label>
@@ -278,7 +368,11 @@ export default function UploadPage() {
 									formik.handleChange(val);
 								}}
 								onBlur={formik.handleBlur}
-								error={formik.submitCount > 0 && formik.touched.caption && formik.errors.caption}
+								error={
+									formik.submitCount > 0 &&
+									formik.touched.caption &&
+									formik.errors.caption
+								}
 								textCountOnTop
 								autoComplete="off"
 							/>
@@ -293,15 +387,22 @@ export default function UploadPage() {
 									Example: "#Tag1 Tag2"
 								</span> */}
 							</h5>
-							<Input
+							<div className="timeline-scroll-section">
+								<div className="timeline" id="timeline" />
+							</div>
+							{/* <Input
 								id="cover"
 								className="input"
 								name="cover"
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
-								error={formik.submitCount > 0 && formik.touched.cover && formik.errors.cover}
+								error={
+									formik.submitCount > 0 &&
+									formik.touched.cover &&
+									formik.errors.cover
+								}
 								autoComplete="off"
-							/>
+							/> */}
 						</div>
 
 						<div className="form-group">
@@ -344,9 +445,7 @@ export default function UploadPage() {
 							<button
 								type="submit"
 								className="primary-button-2"
-								disabled={
-									!formik.dirty || isLoading
-								}
+								disabled={!formik.dirty || isLoading}
 								// disabled={
 								// 	!formik.dirty || !formik.isValid || !videoFile || isLoading
 								// }

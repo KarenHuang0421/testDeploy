@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, MouseEvent } from "react";
+import { joinClasses } from "../../../common/utils"; 
 
 import { followUser } from "../../../common/api/user";
 import { useAppSelector, useAppDispatch } from "../../../common/store";
@@ -56,7 +57,7 @@ export default function FollowButton(props: Props) {
 
 	return isFollowing ? (
 		!props.hideUnfollow ? (
-			<button className={props.followingClassName} onClick={follow}>
+			<button className={props.followClassName} onClick={follow}>
 				關注中
 			</button>
 		) : null

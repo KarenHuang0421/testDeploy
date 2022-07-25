@@ -54,6 +54,19 @@
             }
         }
     ],
+    "demoMyOwnData": {
+        "username": "我的帳號名稱",
+        "name": "@myAccountId",
+        "email": "demo@email.com",
+        "description": "這邊是簡介區",
+        "profilePhoto": "",
+        "following": 0,
+        "followers": 0,
+        "totalLikes": 0,
+        "videos": [],
+        "isFollowing": false,
+        "userType": "normal"
+    },
     "demoUsers": [
         {
             "username": "吉兆割烹 KITCHO",
@@ -170,5 +183,49 @@
         "views": 2,
         "hasLiked": false,
         "isFollowing": false
-    }
+    },
+    "demoVideos": [
+        {
+            "_id": "1",
+            "caption": "here is description about this video",
+            "comments": 10,
+            "createdAt": "2022-02-02 10:02:01",
+            "hasLiked": false,
+            "isFollowing": true,
+            "likes": 10,
+            "music": "music",
+            "shares": 10,
+            "tags": [
+                "tag1",
+                "tag2"
+            ],
+            "uploader": {
+                "username": "username",
+                "name": "@usernameId"
+            },
+            "views": 10,
+            "videoId": "1"
+        },
+        {
+            "_id": "2",
+            "caption": "new episode is online now!",
+            "comments": 2,
+            "createdAt": "2022-02-02 10:02:01",
+            "hasLiked": false,
+            "isFollowing": true,
+            "likes": 2,
+            "music": "music",
+            "shares": 2,
+            "tags": [
+                "tag1",
+                "tag2"
+            ],
+            "uploader": {
+                "username": "username",
+                "name": "@usernameId"
+            },
+            "views": 10,
+            "videoId": "2"
+        }
+    ]
 }

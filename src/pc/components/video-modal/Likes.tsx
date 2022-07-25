@@ -10,7 +10,7 @@ interface Props {
 	handleAuthModalOpen: () => void;
 	curVidId: string;
 	hasLiked?: boolean;
-	onClick: (liked: boolean) => void;
+	onClick?: (liked: boolean) => void;
 }
 
 export default function Likes(props: Props) {
@@ -22,6 +22,7 @@ export default function Likes(props: Props) {
 	const dispatch = useAppDispatch();
 
 	async function likeVid() {
+		if (!props.onClick) return;
 		if (!isAuthed) return props.handleAuthModalOpen();
 		try {
 			const res = await likeVideo(username!, props.curVidId, token!);

@@ -47,7 +47,6 @@ export default function AuthModal({ isMobile, className }: Props) {
 
 		if (val === "hasResetPassward") {
 			dispatch(popUpActions.showModal(["reset"]));
-			// dispatch(popUpActions.setType(["reset"]));
 		}
 	}
 

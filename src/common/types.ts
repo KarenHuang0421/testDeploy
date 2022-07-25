@@ -3,7 +3,8 @@ export interface ComponentProps {
 }
 
 interface CommonData {
-	createdAt?: Date;
+	// createdAt?: Date;
+	createdAt?: string;
 }
 
 export interface UserData extends CommonData {
@@ -18,6 +19,7 @@ export interface UserData extends CommonData {
 	videos?: VideoData[] | string[]; // either uploaded or liked, can't be both
 	isFollowing?: boolean;
 	approved?: boolean;
+	userType?: string;
 }
 
 export interface VideoData extends CommonData {

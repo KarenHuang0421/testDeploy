@@ -207,15 +207,23 @@ h6 {
 }
 
 .al-center {
+	display: flex;
 	align-items: center;
 }
 
 .al-end {
+	display: flex;
 	align-items: flex-end;
 }
 
 .jc-center {
+	display: flex;
 	justify-content: center;
+}
+
+.jc-end {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .w-100 {

@@ -4,15 +4,11 @@ const popUpSlice = createSlice({
 	name: "popUp",
 	initialState: {
 		show: false,
-		type: "",
-		setType: () => {}
+		type: ""
 	},
 	reducers: {
 		showModal(state, { payload }) {
 			state.show = true;
-			state.type = payload[0]
-		},
-		setType(state, { payload }) {
 			state.type = payload[0]
 		},
 		hideModal(state) {

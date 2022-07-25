@@ -17,6 +17,7 @@ const Contact = lazy(() => import("./pages/contact"));
 const Terms = lazy(() => import("./pages/terms"));
 const Following = lazy(() => import("./pages/following"));
 const Profile = lazy(() => import("./pages/profile"));
+const Apply = lazy(() => import("./pages/apply"));
 const Video = lazy(() => import("./pages/video"));
 const Upload = lazy(() => import("./pages/upload"));
 const EditProfile = lazy(() => import("./pages/edit-profile"));
@@ -67,6 +68,7 @@ export default function PCLayout() {
 					<Route path="/video/:videoId" element={<Video />} />
 					<Route path="/search" element={<Search />} />
 					<Route path="/profile" element={<Navigate to="/" />} />
+					<Route path="/apply" element={<Apply />} />
 					<Route path="/notifications" element={<Navigate to="/" />} />
 					<Route element={<PrivateRoute />}>
 						<Route path="/upload" element={<Upload />} />

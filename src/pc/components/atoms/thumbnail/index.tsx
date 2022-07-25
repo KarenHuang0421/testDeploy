@@ -2,6 +2,7 @@ import classes from "./thumbnail.module.scss";
 
 import { HiUser } from "react-icons/hi";
 import { ReactComponent as FireIcon } from "../../../../assets/fire.svg";
+import { useEffect } from "react";
 
 interface Props {
 	size?: number;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function Thumbnail({ size = 24, type }: Props) {
+	
 	if (type === "square") {
 		return (
 			<div
