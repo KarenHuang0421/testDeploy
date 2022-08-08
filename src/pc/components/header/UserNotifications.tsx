@@ -79,6 +79,10 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 		setShowDropdown(false);
 	}
 
+	useEffect(() => {
+		console.log(selectedTag);
+	}, [selectedTag]);
+
 	const tags = [
 		{
 			label: "全部",
@@ -115,6 +119,7 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 					<div className={joinClasses("d-row", classes["tags-row"])}>
 						{tags.map((tag, i) => (
 							<div
+								key={"tag_" + i}
 								className={joinClasses(
 									selectedTag === i && "primary-button-2",
 									classes["tag"]
@@ -125,64 +130,68 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 							</div>
 						))}
 					</div>
-					{notifs.map((notif, i) => (
-						<div
-							key={i}
-							className={joinClasses(
-								"hoverable",
-								classes["notif-container"],
-								!notif.read && classes["unread"]
-							)}
-							title={notif.message}
-							onClick={() => handleRedirect(notif)}
-						>
-							<Link
-								to={"/user/" + notif.by.username}
-								onClick={e => e.stopPropagation()}
-							>
+					{notifs.map(
+						(notif, i) =>
+							(selectedTag === 0 || tags[selectedTag].index === notif.type) && (
 								<div
+									key={i}
 									className={joinClasses(
-										"rounded-photo",
-										classes["rounded-photo"]
+										"hoverable",
+										classes["notif-container"],
+										!notif.read && classes["unread"]
 									)}
+									title={notif.message}
+									onClick={() => handleRedirect(notif)}
 								>
-									{/* <img
-										src={constants.pfpLink + "/" + notif.by.username}
-										alt={notif.by.username}
-									/> */}
-									<Thumbnail size={42} />
-								</div>
-							</Link>
-							<div className={classes["content"]}>
-								<div className="d-row jc-space-btw">
 									<Link
 										to={"/user/" + notif.by.username}
 										onClick={e => e.stopPropagation()}
 									>
-										<h4>{notif.by.username}</h4>
+										<div
+											className={joinClasses(
+												"rounded-photo",
+												classes["rounded-photo"]
+											)}
+										>
+											{/* <img
+										src={constants.pfpLink + "/" + notif.by.username}
+										alt={notif.by.username}
+									/> */}
+											<Thumbnail size={42} />
+										</div>
 									</Link>
-									<span>{convertToDate(notif.createdAt)}</span>
-								</div>
-								<p className="clamp-text">{notif.message}</p>
-							</div>
-							{/* {(notif.meta || notif.type === "likedVideo") && ( */}
-								<div className={classes["video-container"]}>
-									{(notif.meta || notif.type === "likedVideo") && (<video
-										src={
-											constants.videoLink +
-											"/" +
-											(notif.type === "likedVideo"
-												? notif.refId
-												: notif.meta!.videoId)
-										}
-										// loop
-										// autoPlay
-										// muted
-										playsInline
-									/>)}
-								</div>
-							{/*)} */}
-							{/* <div
+									<div className={classes["content"]}>
+										<div className="d-row jc-space-btw">
+											<Link
+												to={"/user/" + notif.by.username}
+												onClick={e => e.stopPropagation()}
+											>
+												<h4>{notif.by.username}</h4>
+											</Link>
+											<span>{convertToDate(notif.createdAt)}</span>
+										</div>
+										<p className="clamp-text">{notif.message}</p>
+									</div>
+									{/* {(notif.meta || notif.type === "likedVideo") && ( */}
+									<div className={classes["video-container"]}>
+										{(notif.meta || notif.type === "likedVideo") && (
+											<video
+												src={
+													constants.videoLink +
+													"/" +
+													(notif.type === "likedVideo"
+														? notif.refId
+														: notif.meta!.videoId)
+												}
+												// loop
+												// autoPlay
+												// muted
+												playsInline
+											/>
+										)}
+									</div>
+									{/*)} */}
+									{/* <div
 								className={classes["delete-btn"]}
 								title="Delete notification"
 							>
@@ -194,8 +203,9 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 									}}
 								/>
 							</div> */}
-						</div>
-					))}
+								</div>
+							)
+					)}
 				</div>
 			)}
 		</Dropdown>
