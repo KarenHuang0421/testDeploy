@@ -208,7 +208,7 @@ export default function Profile() {
 												<Approve2 className="badge" />
 											)}
 											{user.userType === "store" && (
-												<Approve1 className="badge" />
+												<Approve1 className="badge" style={{padding: '4px'}} />
 											)}
 											<button className="flex-1">
 												<FiUpload className="icon" />
@@ -363,7 +363,7 @@ export default function Profile() {
 											className="primary-button-2"
 											style={{ borderRadius: 50 }}
 										>
-											我要定位
+											我要訂位
 										</button>
 									</Panel>
 								)}

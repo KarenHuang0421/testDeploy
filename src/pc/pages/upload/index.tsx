@@ -141,11 +141,28 @@ export default function UploadPage() {
 		}
 
 		function createImage() {
-			var canvas = document.createElement("canvas");
-			var ctx = canvas.getContext("2d");
+			let canvas = document.createElement("canvas");
+			let nodes = timeline?.childElementCount;
+			canvas.setAttribute("id", `image_${nodes}`);
+			if (nodes === 0) canvas.setAttribute("class", `selected`);
+
+			canvas.onclick = function () {
+				if (nodes && timeline) {
+					//remove style of image
+					let childs = timeline?.children;
+					for (let index = 0; index < childs.length; index++) {
+						let indexNode = childs[index];
+						indexNode.classList.remove("selected");
+					}
+					//change selected image
+					let selectedNode = document.getElementById(`image_${nodes}`);
+					selectedNode?.setAttribute("class", `selected`);
+				}
+			};
+
+			let ctx = canvas.getContext("2d");
 			// canvas.width = vid.videoWidth;
 			// canvas.height = vid.videoHeight;
-			var imageNumber = timeline?.childElementCount;
 			canvas.width = 200;
 			canvas.height = 100;
 			ctx?.drawImage(vid, 0, 0, 200, 100);
@@ -348,49 +365,50 @@ export default function UploadPage() {
 							/>
 						</div>
 					</label>
-					<form className="description-portion" onSubmit={formik.handleSubmit}>
-						<div className="form-group">
-							<h5>
-								<label htmlFor="caption">動態描述</label>
-								{/* <span>
+					<form className="description-portion jc-space-btw" onSubmit={formik.handleSubmit}>
+						<div className="description-portion">
+							<div className="form-group">
+								<h5>
+									<label htmlFor="caption">動態描述</label>
+									{/* <span>
 									Currently does not support @ mentions (and won't till I figure
 									out how mentions work 🙂).
 								</span> */}
-							</h5>
-							<Input
-								id="caption"
-								className="input"
-								name="caption"
-								textCount={textCount}
-								textCountMax={50}
-								onChange={(val: any) => {
-									setTextCount(val.target.value.length);
-									formik.handleChange(val);
-								}}
-								onBlur={formik.handleBlur}
-								error={
-									formik.submitCount > 0 &&
-									formik.touched.caption &&
-									formik.errors.caption
-								}
-								textCountOnTop
-								autoComplete="off"
-							/>
-						</div>
-						<div className="form-group">
-							<h5>
-								<label htmlFor="tags">封面</label>
-								{/* <span>
+								</h5>
+								<Input
+									id="caption"
+									className="input"
+									name="caption"
+									textCount={textCount}
+									textCountMax={50}
+									onChange={(val: any) => {
+										setTextCount(val.target.value.length);
+										formik.handleChange(val);
+									}}
+									onBlur={formik.handleBlur}
+									error={
+										formik.submitCount > 0 &&
+										formik.touched.caption &&
+										formik.errors.caption
+									}
+									textCountOnTop
+									autoComplete="off"
+								/>
+							</div>
+							<div className="form-group">
+								<h5>
+									<label htmlFor="tags">封面</label>
+									{/* <span>
 									Space separated list of words (# can be omitted). Used while
 									searching for videos and (eventually) for recommendations.
 									<br />
 									Example: "#Tag1 Tag2"
 								</span> */}
-							</h5>
-							<div className="timeline-scroll-section">
-								<div className="timeline" id="timeline" />
-							</div>
-							{/* <Input
+								</h5>
+								<div className="timeline-scroll-section">
+									<div className="timeline" id="timeline" />
+								</div>
+								{/* <Input
 								id="cover"
 								className="input"
 								name="cover"
@@ -403,42 +421,36 @@ export default function UploadPage() {
 								}
 								autoComplete="off"
 							/> */}
-						</div>
-
-						<div className="form-group">
-							<h5>
-								<label htmlFor="music">分類(最多選擇3個分類)</label>
-								{/* <span>
+							</div>
+							<div className="form-group">
+								<h5>
+									<label htmlFor="music">分類(最多選擇3個分類)</label>
+									{/* <span>
 									TikTok (the real one) identifies music used in the video
 									automatically, but no such feature exists here so you gotta
 									type it manually 😊. Can also be left blank. <br /> Example:
 									Rick Astley - Never gonna give you up
 								</span> */}
-							</h5>
-							<CheckboxSet
-								data={catergories}
-								id="tags"
-								name="tags"
-								// onChange={(val) => formik.handleChange(val.map(e => e.check))}
-								// onChange={formik.handleChange}
-								onChange={val => console.log(val)}
-							/>
-						</div>
-						<div className="form-group">
-							<h5>
-								<label htmlFor="music">誰可以觀看此內容</label>
-								{/* <span>
-									TikTok (the real one) identifies music used in the video
-									automatically, but no such feature exists here so you gotta
-									type it manually 😊. Can also be left blank. <br /> Example:
-									Rick Astley - Never gonna give you up
-								</span> */}
-							</h5>
-							<CheckboxSet
-								data={privacySetting}
-								round
-								onChange={val => console.log(val)}
-							/>
+								</h5>
+								<CheckboxSet
+									data={catergories}
+									id="tags"
+									name="tags"
+									// onChange={(val) => formik.handleChange(val.map(e => e.check))}
+									// onChange={formik.handleChange}
+									onChange={val => console.log(val)}
+								/>
+							</div>
+							{/* <div className="form-group">
+								<h5>
+									<label htmlFor="music">誰可以觀看此內容</label>
+								</h5>
+								<CheckboxSet
+									data={privacySetting}
+									round
+									onChange={val => console.log(val)}
+								/>
+							</div> */}
 						</div>
 						<div className="d-row" style={{ gap: "16px" }}>
 							<button className="secondary-button">取消</button>

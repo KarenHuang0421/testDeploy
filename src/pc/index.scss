@@ -6,10 +6,23 @@ $scrollbar-width: 8px;
 /* this comment keeps track of the current maximum z-index. Change this comment if a need for an even greater z-index arrives and update the component next to it with the one that will have the higher z-index. ! Do not set it to an absurdly high value that gets difficult to keep track of (like 99999) ! */
 // cur-max-z-index: 25; notification
 
+@media screen and (max-width:1440px) { 
+	* {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width:1920) { 
+	* {
+		font-size: 16px;
+	}
+}
+
 * {
 	scrollbar-width: thin;
 	scrollbar-color: var(--clr-scrollbar-thumb) var(--clr-scrollbar-track);
 }
+
 
 *::-webkit-scrollbar {
 	// width: $scrollbar-width;

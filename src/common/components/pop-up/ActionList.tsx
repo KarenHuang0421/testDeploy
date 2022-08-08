@@ -20,7 +20,10 @@ export default function ActionList() {
 			subTitle:
 				"申請成功可獲得藍勾勾認證，並且可設定訂位資訊(需提供公司登記與營利事業登記證明做審核，工時約3天)",
 			action: () => {
-				window.location.href = "/apply"
+				let fansAmmountMoreThan1000 = true;
+				if (!fansAmmountMoreThan1000)
+					dispatch(popUpActions.showModal(["fail-apply"]));
+				else window.location.href = "/apply/store";
 			}
 		},
 		{
@@ -30,7 +33,10 @@ export default function ActionList() {
 			subTitle:
 				"申請成功可獲得黃勾勾認證，並且獲得更高的曝光率（粉絲至少達1,000才可申請）",
 			action: () => {
-				dispatch(popUpActions.showModal(['fail-apply']));
+				let fansAmmountMoreThan1000 = true;
+				if (!fansAmmountMoreThan1000)
+					dispatch(popUpActions.showModal(["fail-apply"]));
+				else window.location.href = "/apply/public";
 			}
 		}
 	];

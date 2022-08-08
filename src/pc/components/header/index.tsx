@@ -122,7 +122,7 @@ export default function Header() {
 									className={joinClasses("fas fa-bell", classes["icon"])}
 									onClick={() => setShowNotifs(true)}
 								/> */}
-								<div className={classes["inbox-wrap"]}>
+								<div className={classes["inbox-wrap"]} onClick={() => setShowNotifs(true)}>
 									<VscBell size={24} />
 									{hasNotifs && <span className={classes["dot"]} />}
 								</div>

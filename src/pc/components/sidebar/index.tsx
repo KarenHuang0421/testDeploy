@@ -17,6 +17,7 @@ import {
 import constants from "../../../common/constants";
 import LoadingSpinner from "../../../common/components/loading-spinner";
 import Thumbnail from "../atoms/thumbnail";
+import { FollowingIcon, ThumbUpIcon } from "../../../assets/logo";
 
 interface Props {
 	isTerms?: boolean;
@@ -41,17 +42,20 @@ const HomeLink = [
 	{
 		title: "為您推薦",
 		url: "/",
-		icon: <FiThumbsUp />
+		icon: "ThumbUpIcon"
+		// icon: <ThumbUpIcon />
 	},
 	{
 		title: "活動推薦",
 		url: "/events",
-		icon: <EventsIcon />
+		icon: "EventsIcon"
+		// icon: <EventsIcon />
 	},
 	{
 		title: "關注中",
 		url: "/following",
-		icon: <FollowerIcon />
+		icon: "FollowingIcon"
+		// icon: <FollowingIcon />
 	}
 ];
 
@@ -132,7 +136,18 @@ export default function Sidebar({ isTerms = false }: Props) {
 							joinClasses("hoverable", "nav-link", isActive && "active")
 						}
 					>
-						{icon}
+						{/* {icon} */}
+						{icon === "ThumbUpIcon" && (
+							<ThumbUpIcon
+								fill={window.location.pathname === url ? "#e337ff" : "white"}
+							/>
+						)}
+						{icon === "EventsIcon" && <EventsIcon />}
+						{icon === "FollowingIcon" && (
+							<FollowingIcon
+								fill={window.location.pathname === url ? "#e337ff" : "white"}
+							/>
+						)}
 						<span>{title}</span>
 					</NavLink>
 				))}
@@ -179,7 +194,7 @@ export default function Sidebar({ isTerms = false }: Props) {
 														<h5>{acc.username}</h5>
 														<div className="d-row al-center">
 															<h6>{acc.name}</h6>
-															{acc.userType === 'public' && <Approve2 />}
+															{acc.userType === "public" && <Approve2 />}
 														</div>
 													</div>
 												</div>

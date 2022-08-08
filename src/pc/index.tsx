@@ -40,8 +40,8 @@ export default function PCLayout() {
 		localStorage.setItem("hasSeenNotice", "true");
 	}, []);
 
-	function handleShowModal (){
-		dispatch(popUpActions.hideModal())
+	function handleShowModal() {
+		dispatch(popUpActions.hideModal());
 	}
 
 	return (
@@ -49,7 +49,13 @@ export default function PCLayout() {
 			<Header />
 			{/* {showNotice && <LegalNotice setShowNotice={setShowNotice} />} */}
 			{authModal.show && <AuthModal />}
-			{popUp.show && <PopUp className={`pop-up-${popUp.type}`} type={popUp.type} handleModalClose={handleShowModal} />}
+			{popUp.show && (
+				<PopUp
+					className={`pop-up-${popUp.type}`}
+					type={popUp.type}
+					handleModalClose={handleShowModal}
+				/>
+			)}
 			{}
 			{/* {notification.show && (
 				<Notification
@@ -68,7 +74,7 @@ export default function PCLayout() {
 					<Route path="/video/:videoId" element={<Video />} />
 					<Route path="/search" element={<Search />} />
 					<Route path="/profile" element={<Navigate to="/" />} />
-					<Route path="/apply" element={<Apply />} />
+					<Route path="/apply/:type" element={<Apply />} />
 					<Route path="/notifications" element={<Navigate to="/" />} />
 					<Route element={<PrivateRoute />}>
 						<Route path="/upload" element={<Upload />} />

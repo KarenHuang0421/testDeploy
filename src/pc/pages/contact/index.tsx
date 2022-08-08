@@ -123,7 +123,8 @@ export default function Contact() {
 						setSent(false);
 						formik.resetForm();
 					}}
-					type="feedback"
+					content={"我們已收到您的來信"}
+					type="confirm"
 				/>
 			)}
 		</PageWithSidebar>

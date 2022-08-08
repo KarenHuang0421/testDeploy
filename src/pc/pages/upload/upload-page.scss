@@ -232,7 +232,8 @@ $preview-width: 23.5rem;
 
                     .timeline-scroll-section {
                         overflow: scroll;
-                        width: 60vw;
+                        // width: 60vw;
+                        max-width: 950px;
 
                         .timeline {
                             display: flex;
@@ -244,8 +245,26 @@ $preview-width: 23.5rem;
                             padding: 10px 0;
                             flex: 1;
 
+                            .selected {
+                                border: 3px solid white;
+                                transform: scale(1.2) translateX(20px);
+                            }
+
                             &::-webkit-scrollbar {
-                                display: none;
+                                // display: none;
+                                height: 10px;
+                            }
+
+                            &::-webkit-scrollbar-track {
+                                // display: none;
+                                height: 2px!important;
+                                // border-radius: 0 0 8px 8px;
+                                border-radius: 10px;
+                            }
+
+                            &::-webkit-scrollbar-thumb {
+                                background-color: #656565;
+                                border-radius: 8px;
                             }
                         }
 

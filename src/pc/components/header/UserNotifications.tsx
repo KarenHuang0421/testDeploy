@@ -10,6 +10,8 @@ import { deleteNotif, getCustom } from "../../../common/api/user";
 import LoadingSpinner from "../../../common/components/loading-spinner";
 import constants from "../../../common/constants";
 import { convertToDate, joinClasses } from "../../../common/utils";
+import { demoNotifications } from "../../../data.json";
+import Thumbnail from "../atoms/thumbnail";
 
 interface Props {
 	setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +22,7 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 	const navigate = useNavigate();
 	const [notifs, setNotifs] = useState<null | UserNotification[]>(null);
 	const { username, token } = useAppSelector(state => state.auth);
+	const [selectedTag, setSelectedTag] = useState(0);
 
 	const fetchNotifs = useCallback(async () => {
 		try {
@@ -32,6 +35,7 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 					message: "Couldn't fetch notifications: " + err.message
 				})
 			);
+			setNotifs(demoNotifications);
 		}
 	}, [username, dispatch]);
 
@@ -75,80 +79,124 @@ export default function UserNotifications({ setShowDropdown }: Props) {
 		setShowDropdown(false);
 	}
 
+	const tags = [
+		{
+			label: "全部",
+			index: "all"
+		},
+		{
+			label: "按讚",
+			index: "likedVideo"
+		},
+		{
+			label: "評論",
+			index: "commented"
+		},
+		{
+			label: "提及",
+			index: "replied"
+		},
+		{
+			label: "粉絲",
+			index: "followed"
+		}
+	];
+
 	return (
 		<Dropdown
 			className={classes["inbox-card"]}
 			setShowDropdown={setShowDropdown}
 		>
-			<h1>Notifications</h1>
+			<h1>通知</h1>
 			{!notifs ? (
 				<LoadingSpinner className={classes["notif-spinner"]} />
 			) : (
-				notifs.map((notif, i) => (
-					<div
-						key={i}
-						className={joinClasses(
-							"hoverable",
-							classes["notif-container"],
-							!notif.read && classes["unread"]
-						)}
-						title={notif.message}
-						onClick={() => handleRedirect(notif)}
-					>
-						<Link
-							to={"/user/" + notif.by.username}
-							onClick={e => e.stopPropagation()}
-						>
+				<div>
+					<div className={joinClasses("d-row", classes["tags-row"])}>
+						{tags.map((tag, i) => (
 							<div
 								className={joinClasses(
-									"rounded-photo",
-									classes["rounded-photo"]
+									selectedTag === i && "primary-button-2",
+									classes["tag"]
 								)}
+								onClick={() => setSelectedTag(i)}
 							>
-								<img
-									src={constants.pfpLink + "/" + notif.by.username}
-									alt={notif.by.username}
-								/>
+								{tag.label}
 							</div>
-						</Link>
-						<div className={classes["content"]}>
+						))}
+					</div>
+					{notifs.map((notif, i) => (
+						<div
+							key={i}
+							className={joinClasses(
+								"hoverable",
+								classes["notif-container"],
+								!notif.read && classes["unread"]
+							)}
+							title={notif.message}
+							onClick={() => handleRedirect(notif)}
+						>
 							<Link
 								to={"/user/" + notif.by.username}
 								onClick={e => e.stopPropagation()}
 							>
-								<h4>{notif.by.username}</h4>
+								<div
+									className={joinClasses(
+										"rounded-photo",
+										classes["rounded-photo"]
+									)}
+								>
+									{/* <img
+										src={constants.pfpLink + "/" + notif.by.username}
+										alt={notif.by.username}
+									/> */}
+									<Thumbnail size={42} />
+								</div>
 							</Link>
-							<p className="clamp-text">{notif.message}</p>
-							<span>{convertToDate(notif.createdAt)}</span>
-						</div>
-						{(notif.meta || notif.type === "likedVideo") && (
-							<div className={classes["video-container"]}>
-								<video
-									src={
-										constants.videoLink +
-										"/" +
-										(notif.type === "likedVideo"
-											? notif.refId
-											: notif.meta!.videoId)
-									}
-									// loop
-									// autoPlay
-									// muted
-									playsInline
-								/>
+							<div className={classes["content"]}>
+								<div className="d-row jc-space-btw">
+									<Link
+										to={"/user/" + notif.by.username}
+										onClick={e => e.stopPropagation()}
+									>
+										<h4>{notif.by.username}</h4>
+									</Link>
+									<span>{convertToDate(notif.createdAt)}</span>
+								</div>
+								<p className="clamp-text">{notif.message}</p>
 							</div>
-						)}
-						<div className={classes["delete-btn"]} title="Delete notification">
-							<i
-								className="fas fa-close"
-								onClick={e => {
-									e.stopPropagation();
-									delNotif(notif._id!);
-								}}
-							/>
+							{/* {(notif.meta || notif.type === "likedVideo") && ( */}
+								<div className={classes["video-container"]}>
+									{(notif.meta || notif.type === "likedVideo") && (<video
+										src={
+											constants.videoLink +
+											"/" +
+											(notif.type === "likedVideo"
+												? notif.refId
+												: notif.meta!.videoId)
+										}
+										// loop
+										// autoPlay
+										// muted
+										playsInline
+									/>)}
+								</div>
+							{/*)} */}
+							{/* <div
+								className={classes["delete-btn"]}
+								title="Delete notification"
+							>
+								<i
+									className="fas fa-close"
+									onClick={e => {
+										e.stopPropagation();
+										delNotif(notif._id!);
+									}}
+								/>
+							</div> */}
 						</div>
-					</div>
-				))
+					))}
+				</div>
 			)}
 		</Dropdown>
 	);

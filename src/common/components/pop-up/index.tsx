@@ -1,6 +1,8 @@
 import "./pop-up.scss";
+import { useEffect } from "react";
 import { joinClasses } from "../../utils";
 import { ComponentProps } from "../../types";
+import { useAppSelector } from "../../../common/store"
 import Reset from "./Reset";
 import Send from "./Send";
 import EditMyProfile from "./EditMyProfile";
@@ -13,6 +15,7 @@ import { IoCloseOutline } from "react-icons/io5";
 interface Props extends ComponentProps {
 	handleModalClose?: () => void;
 	type?: string;
+	content?: string;
 }
 
 const title = (val: string) => {
@@ -23,11 +26,13 @@ const title = (val: string) => {
 };
 
 const showCloseBtn = (val: string) => {
-	if (val === "apply") return true
-	return false
-}
+	if (val === "apply") return true;
+	return false;
+};
 
-export default function PopUp({ className, type, handleModalClose }: Props) {
+export default function PopUp({ className, content, type, handleModalClose }: Props) {
+	const popContent = useAppSelector(state => state.popUp.content)
+	
 	return (
 		<>
 			<div className="backdrop auth-backdrop" onClick={handleModalClose} />
@@ -48,7 +53,7 @@ export default function PopUp({ className, type, handleModalClose }: Props) {
 					</div>
 				)}
 				<div className="scrollable-part">
-					{type === "feedback" && <Send handleModalClose={handleModalClose} />}
+					{type === "confirm" && <Send content={content || popContent} handleModalClose={handleModalClose} />}
 					{type === "reset" && <Reset />}
 					{type === "edit-my-profile" && <EditMyProfile />}
 					{type === "edit-store-profile" && <EditStoreProfile />}

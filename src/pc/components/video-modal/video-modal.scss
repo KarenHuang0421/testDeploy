@@ -38,6 +38,10 @@ $button-size: 3.75rem;
             cursor: pointer;
             transition: opacity 0.25s ease-out;
 
+            i {
+                font-size: 36px
+            }
+
             &:hover {
                 opacity: 0.7;
             }

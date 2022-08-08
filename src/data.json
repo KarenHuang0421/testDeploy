@@ -307,5 +307,53 @@
             "views": 10,
             "videoId": "2"
         }
+    ],
+    "demoNotifications": [
+        {
+            "_id": "1",
+            "notificationId": "1",
+            "type": "followed",
+            "message": "關注了你",
+            "refId": "",
+            "by": {
+                "username": "RAW",
+                "name": "@kitcho2202",
+                "email": "emo",
+                "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+                "profilePhoto": "",
+                "following": 10,
+                "followers": 10,
+                "totalLikes": 10,
+                "videos": [],
+                "isFollowing": false,
+                "userType": "store"
+            },
+            "meta": "",
+            "read": false,
+            "createdAt": "2022-02-02 10:02:01"
+        },
+        {
+            "_id": "2",
+            "notificationId": "2",
+            "type": "likedVideo",
+            "message": "對你的影片點了讚",
+            "refId": "",
+            "by": {
+                "username": "RAW",
+                "name": "@kitcho2202",
+                "email": "emo",
+                "description": "熱愛壽司的兩位主廚希望透過自己一雙手讓臺灣人吃到媲美日本名店的上乘壽司，故店子的裝潢亦秉持日本壽司店的簡樸，氣氛更為輕鬆。食物以生食及手握壽司為主，餐期間會穿插兩至三道割烹料理。由於兼營日本清酒代理，餐廳會按時令提供不同的清酒佐餐，期間亦會邀請日本廚師作客座主廚。2018榮獲美食聖經「米其林指南」一星，以非日籍廚師獲獎，倍感殊榮。",
+                "profilePhoto": "",
+                "following": 10,
+                "followers": 10,
+                "totalLikes": 10,
+                "videos": [],
+                "isFollowing": false,
+                "userType": "store"
+            },
+            "meta": "",
+            "read": false,
+            "createdAt": "2022-02-02 10:02:01"
+        }
     ]
 }

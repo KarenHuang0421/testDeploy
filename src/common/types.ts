@@ -91,13 +91,13 @@ export interface UserQuery {
 export interface UserNotification {
 	_id?: string;
 	notificationId?: string;
-	type: "likedVideo" | "followed" | "commented" | "replied";
+	type: "likedVideo" | "followed" | "commented" | "replied" | string;
 	message: string;
 	refId: UserData | VideoData | string;
 	by: UserData;
 	meta?: any;
 	read: boolean;
-	createdAt: Date;
+	createdAt: Date | string;
 }
 
 export interface VideoDynamics {
