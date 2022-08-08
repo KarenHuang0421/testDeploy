@@ -3,14 +3,51 @@ import { useRef, useEffect } from "react";
 import "./profile-buttons.scss";
 
 interface Props {
-	setVideosType: React.Dispatch<React.SetStateAction<"uploaded" | "liked">>;
-	fetchLikedVids: () => Promise<void>;
+	setVideosType: React.Dispatch<
+		React.SetStateAction<any | "active" | "video" | "collected" | "liked">
+	>;
+	isOwnProfile: boolean,
+	// fetchLikedVids: () => Promise<void>;
 	username: string;
 }
 
+const MyOwnTabs = [
+	{
+		id: "active",
+		label: "動態"
+	},
+	{
+		id: "video",
+		label: "影片與照片"
+	},
+	{
+		id: "collected",
+		label: "收藏的內容"
+	},
+	{
+		id: "liked",
+		label: "喜歡的內容"
+	}
+];
+const tabs = [
+	{
+		id: "active",
+		label: "動態"
+	},
+	{
+		id: "video",
+		label: "影片與照片"
+	},
+	{
+		id: "liked",
+		label: "喜歡的內容"
+	}
+];
+
 export default function ProfileButtons({
 	setVideosType,
-	fetchLikedVids,
+	isOwnProfile,
+	// fetchLikedVids,
 	username
 }: Props) {
 	const buttonsRef = useRef<HTMLDivElement | null>(null);
@@ -24,13 +61,13 @@ export default function ProfileButtons({
 		function handleButton(e: any) {
 			if (e.target.classList.contains("active")) return;
 			if (e.type === "mouseover") {
-				bar.style.left = `${50 * +e.target.dataset.position}%`;
+				bar.style.left = `${25 * +e.target.dataset.position}%`;
 			} else if (e.type === "mouseout") {
 				bar.style.left = prevPosition;
 			} else {
 				container.querySelector("button.active")!.className = "";
 				e.target.className = "active";
-				prevPosition = `${50 * +e.target.dataset.position}%`;
+				prevPosition = `${25 * +e.target.dataset.position}%`;
 			}
 		}
 
@@ -54,13 +91,13 @@ export default function ProfileButtons({
 
 		bar.style.left = "0%";
 		container.querySelector("button.active")!.className = "";
-		container.querySelector("button#uploaded")!.className = "active";
+		container.querySelector("button#active")!.className = "active";
 	}, [username]);
 
 	return (
 		<div className="profile-category-buttons" ref={buttonsRef}>
 			<div className="btns">
-				<button
+				{/* <button
 					id="uploaded"
 					className="active"
 					data-position="0"
@@ -77,7 +114,19 @@ export default function ProfileButtons({
 					}}
 				>
 					Liked
-				</button>
+				</button> */}
+
+				{(isOwnProfile ? MyOwnTabs : tabs).map((item , index) => (
+					<button
+						key={"tab_"+index}
+						id={item.id}
+						className={index == 0 ? "active" : ""}
+						data-position={index}
+						onClick={() => setVideosType(item.id)}
+					>
+						{item.label}
+					</button>
+				))}
 			</div>
 			<div className="button-underbar">
 				<span style={{ left: "0%" }} />

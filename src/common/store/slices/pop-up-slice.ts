@@ -5,15 +5,16 @@ const popUpSlice = createSlice({
 	initialState: {
 		show: false,
 		type: "",
-		setType: () => {}
+		content: ""
 	},
 	reducers: {
 		showModal(state, { payload }) {
 			state.show = true;
 			state.type = payload[0]
-		},
-		setType(state, { payload }) {
-			state.type = payload[0]
+
+			if (payload[0] === 'confirm') {
+				state.content = payload[1]
+			}
 		},
 		hideModal(state) {
 			state.show = false;

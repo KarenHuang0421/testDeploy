@@ -1,6 +1,6 @@
 @import "../../index.scss";
 
-$sidebar-width: 356px;
+$sidebar-width: 335px;
 // $sidebar-width: 250px;
 $box-padding: 12px 0px;
 $header-color: rgba(var(--clr-secondary-values), 0.75);
@@ -49,8 +49,11 @@ $bg-transition: background-color 0.25s ease-out;
 			align-items: center;
 			gap: 12px;
 			padding: 12px 8px;
-			font-size: 22px;
 			border-radius: $btn-border-radius;
+
+			span {
+				font-size: 22px;
+			}
 
 			&.active {
 				color: var(--clr-primary);

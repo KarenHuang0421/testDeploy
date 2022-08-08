@@ -1,18 +1,23 @@
-$card-width: 196px;
-$card-height: 260px;
+$card-width: 214px;
+$card-height: 339px;
 
 .profile-card {
-	width: $card-width;
-	height: $card-height;
+	// width: $card-width;
+	// height: $card-height;
 
 	.video-container {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
 		width: 100%;
 		height: 100%;
 		background: #000;
+		border-radius: 8px;
 		overflow: hidden;
+		height: $card-height;
+		margin-bottom: 10px;
 
 		video {
 			background: #000;
@@ -20,5 +25,25 @@ $card-height: 260px;
 			height: 100%;
 			cursor: pointer;
 		}
+		.profile-card-video-tool {
+			position: absolute;
+			bottom: 10px;
+			left: 12px;
+			gap: 5px;
+
+			span {
+				color: white;
+				margin-right: 5px;
+			}
+		}
+	}
+
+	>span {
+		color: white;
+		display: inline-block;
+		width: $card-width;
+		white-space: nowrap;
+		overflow: hidden !important;
+		text-overflow: ellipsis;
 	}
 }

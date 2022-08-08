@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../common/store";
 import { VideoData } from "../../../common/types";
 import { getVideo, share } from "../../../common/api/video";
 import { notificationActions } from "../../../common/store/slices/notification-slice";
+import { demoVideo1 } from "../../../data.json";
 
 export interface ModalProps {
 	videoId: string;
@@ -30,18 +31,19 @@ export default function LoadVideoModal({ videoId, setShowModal }: ModalProps) {
 
 	useEffect(() => {
 		async function fetchVid() {
-			try {
-				const videoId = '1';
-				const res = await getVideo(videoId, username);
-				setVideoData(res.data);
-			} catch (err: any) {
-				dispatch(
-					notificationActions.showNotification({
-						type: "error",
-						message: err.message
-					})
-				);
-			}
+			// try {
+			// 	const videoId = '1';
+			// 	const res = await getVideo(videoId, username);
+			// 	setVideoData(res.data);
+			// } catch (err: any) {
+			// 	dispatch(
+			// 		notificationActions.showNotification({
+			// 			type: "error",
+			// 			message: err.message
+			// 		})
+			// 	);
+			// }
+			setVideoData(demoVideo1)
 		}
 		fetchVid();
 	}, [dispatch, videoId, username]);

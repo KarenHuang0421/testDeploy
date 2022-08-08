@@ -38,6 +38,10 @@ $button-size: 3.75rem;
             cursor: pointer;
             transition: opacity 0.25s ease-out;
 
+            i {
+                font-size: 36px
+            }
+
             &:hover {
                 opacity: 0.7;
             }
@@ -403,6 +407,19 @@ $button-size: 3.75rem;
             background: var(--clr-layer-1);
             padding: 1.3rem 2rem;
             border-top: 2px solid var(--clr-border);
+
+            >span {
+                margin: auto
+            }
+
+            .login {
+                color: var(--clr-primary);
+                cursor: pointer;
+                font-weight: 700;
+                padding: 0 4px;
+                text-decoration: underline;
+                user-select: none;
+            }   
 
             .input-wrapper {
                 display: flex;

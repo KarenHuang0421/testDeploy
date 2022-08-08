@@ -76,6 +76,10 @@ $button-background: rgba(217, 217, 217, 0.5);
             top: 50%;
             right: 0;
             transform: translate(-50%, -50%);
+
+            i {
+                font-size: 36px
+            }
         }
 
         .tool-btn {

@@ -13,16 +13,18 @@
 }
 .panel-head {
     align-items: flex-end;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--clr-border);
     color: var(--clr-panel-title-color);
     
     span {
+        font-weight: bold;
         line-height: 2rem;
     }
 
     .sub {
-        color: #6b6b6b;
+        color: #A5A5A5;
         font-size: 12px;
+        font-weight: 400;
         line-height: 1.6rem;
     }
 }

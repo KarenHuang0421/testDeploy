@@ -2,7 +2,7 @@
 
 $sidebar-width: 356px;
 $profile-icon-size: 32px;
-$notification-dd-height: 640px;
+$notification-dd-height: 556px;
 $notification-dd-width: 376px;
 
 .header-wrapper {
@@ -196,9 +196,24 @@ $notification-dd-width: 376px;
         right: 0;
         top: 130%;
         z-index: 12;
+        background-color: black;
+        border: 1px solid var(--clr-border);
         width: $notification-dd-width;
         height: $notification-dd-height;
         overflow: auto;
+
+        .tags-row {
+            gap: 12px;
+            padding: 0 0 8px 16px;
+
+            .tag {
+                border-radius: 24px;
+                cursor: pointer;
+                font-weight: normal;
+                padding: 4px 12px;
+                background-color: #272727;
+            }
+        }
 
         h1 {
             font-size: 1.3rem;
@@ -242,6 +257,7 @@ $notification-dd-width: 376px;
             }
 
             .video-container {
+                background-color: #595959;
                 max-width: 42px;
                 height: 56px;
                 flex: 1 0 42px;

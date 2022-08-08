@@ -1,4 +1,4 @@
-$modal-width: 464px;
+$modal-width: 530px;
 $button-height: 42px;
 
 .pop-up-publish {
@@ -41,7 +41,65 @@ $button-height: 42px;
     border: 1px solid var(--clr-text-3);
     color: var(--clr-text);
     border-radius: 8px;
-    padding: 30px 35px;
+    margin: auto;
+    padding: 20px;
+    // height: 100%;
+    display: block;
+
+    &.pop-up-edit-my-profile {
+        min-height: 70vh;
+        max-height: 90vh;
+        height: 100%;
+        padding: 15px 0;
+
+        .pop-up-title {
+            padding: 0 20px;
+        }
+
+        .scrollable-part {
+            padding: 0px !important
+        }
+    }
+
+    &.pop-up-apply {
+        padding: 20px 20px 0 20px ;
+    }
+
+    &.pop-up-fail-apply {
+        width: 424px!important;
+    }
+
+    h1 {
+        flex:5;
+        text-align: center;
+    }
+    
+    .icon-wrap {
+        // position: absolute;
+        // right: 24px;
+        // top: 17px;
+        background-color: #595959;
+        border-radius: 2.6rem;
+        width: 2.6rem;
+        height: 2.6rem;
+    }
+
+    .fa-close {
+        font-size: 2rem;
+        // font-weight: 300;
+        color: rgba(var(--clr-secondary-values), 0.7);
+    }
+
+    .scrollable-part {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 90%;
+        overflow-y: scroll;
+        padding: 0px 15px 10px 15px;
+        // width: 100%;
+    }
 
     .send {
         div {
@@ -56,6 +114,68 @@ $button-height: 42px;
         }
     }
 
+    .edit {
+        .edit-banner {
+            position: relative;
+            background-color: #272727;
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+
+            .edit-tool {
+                cursor: pointer;
+                position: absolute;
+                bottom: 5px;
+                right: 10px;
+                z-index: 1;
+            }
+        }
+        .edit-content {
+            padding: 0 40px;
+            transform: translateY(-50px);
+            gap: 20px;
+
+            .avatar-set {
+                button {
+                    color: var(--clr-primary);
+                    text-decoration: underline;
+                    margin-top: 4px;
+                }
+            }
+        }
+    }
+
+    .action-list {
+        .list-item {
+            cursor: pointer;
+            padding: 20px 0;
+
+            span {
+                flex: none;
+                width: 75px
+            }
+
+            i {
+                display: flex;
+                justify-content: flex-end;
+                width:  50px;
+            }
+        }
+
+        .list-item:nth-child(n+2) {
+            border-top: 1px solid #fff;
+        }
+    }
+
+    .fail-apply {
+        h2 {
+            color: white;
+            font-weight: 600;
+        }
+        h3 {
+            margin: 15px 0;
+        }
+    }
 
     form {
         display: flex;

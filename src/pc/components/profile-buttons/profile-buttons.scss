@@ -5,7 +5,7 @@
 		display: flex;
 
 		button {
-			width: 50%;
+			width: 25%;
 			font-weight: 600;
 			font-size: 1.1rem;
 			color: rgba(var(--clr-secondary-values), 0.5);
@@ -24,11 +24,12 @@
 		position: relative;
 
 		span {
-			height: 2px;
-			background-color: var(--clr-secondary);
-			width: 50%;
+			height: 4px;
+			background-color: var(--clr-primary);
+			border-radius: 4px;
+			width: 25%;
 			position: absolute;
-			top: -50%;
+			bottom:0;
 			transition: left 0.25s ease-out;
 		}
 	}

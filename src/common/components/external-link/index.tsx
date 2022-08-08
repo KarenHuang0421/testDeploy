@@ -2,6 +2,10 @@ import classes from "./external-link.module.scss";
 import { ReactNode } from "react";
 import { joinClasses } from "../../utils";
 
+import { FcGoogle } from "react-icons/fc";
+import { FaDiscord, FaTwitter } from "react-icons/fa";
+import { ImFacebook } from "react-icons/im";
+
 interface Props {
 	label?: string,
     icon?: ReactNode,

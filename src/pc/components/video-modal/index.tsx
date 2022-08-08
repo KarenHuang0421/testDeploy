@@ -173,11 +173,12 @@ export default function VideoModal(props: ModalProps) {
 			url.focus();
 			url.select();
 			document.execCommand("copy");
+			url.blur()
 		}
 	}
 
 	function setScreenSize() {
-		setIsFullScreen(prev => !prev)
+		setIsFullScreen(prev => !prev);
 	}
 
 	return (
@@ -335,8 +336,24 @@ export default function VideoModal(props: ModalProps) {
 							<button onClick={copyUrl}>複製連結</button>
 						</div>
 					</div>
-					<div className={joinClasses("comments", isAuthed && "container")}>
-						{isAuthed ? (
+					<div className={joinClasses("comments", "container")}>
+						{!comments ? (
+							<LoadingSpinner />
+						) : (
+							comments.map((comment, i) => (
+								<Comment
+									key={i}
+									{...comment}
+									handleModalClose={handleModalClose}
+									url={url}
+									videoId={curVidId}
+									setComments={setComments}
+									fetchComments={fetchComments}
+									fetchCommentsNum={fetchCommentsNum}
+								/>
+							))
+						)}
+						{/* {isAuthed ? (
 							!comments ? (
 								<LoadingSpinner />
 							) : (
@@ -365,16 +382,15 @@ export default function VideoModal(props: ModalProps) {
 								</button>
 								<p>Don't have an account? Sign up</p>
 							</div>
-						)}
+						)} */}
 					</div>
-					{isAuthed && (
-						<CommentForm
-							videoId={curVidId}
-							fetchComments={fetchComments}
-							fetchCommentsNum={fetchCommentsNum}
-							setComments={setComments}
-						/>
-					)}
+					<CommentForm
+						isAuthed={isAuthed}
+						videoId={curVidId}
+						fetchComments={fetchComments}
+						fetchCommentsNum={fetchCommentsNum}
+						setComments={setComments}
+					/>
 				</div>
 			)}
 		</div>

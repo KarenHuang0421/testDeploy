@@ -53,6 +53,7 @@ $block-border: 4px;
 .store-list-item {
     display: flex;
     align-items: center;
+    cursor: pointer;
     // margin-bottom: 15px;
 
     .thumbnail {
